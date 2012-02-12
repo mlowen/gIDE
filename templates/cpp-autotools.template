@@ -1,0 +1,98 @@
+################################################################################
+#                                                                              #
+#                                   Info                                       #
+#                                                                              #
+################################################################################
+
+{INFO}
+	{NAME}:Autotools Project
+	{LANGUAGE}:C++
+{END}
+
+################################################################################
+#                                                                              #
+#                               Setup Instructions                             #
+#                                                                              #
+################################################################################
+
+{CREATE}
+	{DIR}:src
+	{FILE}:Makefile.am
+	{FILE}:configure.ac
+	{FILE}:src/Makefile.am
+	{FILE}:src/main.cc
+	
+	# The files that automake will complain if they don't exist
+	{FILE}:AUTHORS
+	{FILE}:NEWS
+	{FILE}:ChangeLog
+	{FILE}:README
+{END}
+
+################################################################################
+#                                                                              #
+#                                   Files                                      #
+#                                                                              #
+################################################################################
+
+{FILES}
+
+{FILE}:Makefile.am
+SUBDIRS=src
+{END}
+
+{FILE}:configure.ac
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+AC_PREREQ(2.60)
+AC_INIT({%NAME%}, 1.0, you@example.com)
+AC_CONFIG_SRCDIR([src/main.cc])
+AM_INIT_AUTOMAKE
+AM_CONFIG_HEADER([config.h])
+
+# Checks for programs.
+AC_PROG_CXX
+AC_PROG_INSTALL
+
+# Checks for header files.
+
+# Checks for typedefs, structures, and compiler characteristics.
+
+# Checks for library functions.
+
+AC_CONFIG_FILES([Makefile
+                 src/Makefile])
+AC_OUTPUT
+{END}
+
+{FILE}:src/Makefile.am
+bin_PROGRAMS = {%NAME%}
+{%NAME%}_SOURCES = main.cc
+{END}
+
+{FILE}:src/main.cc
+#include <iostream>
+
+int main(int argc, char *argv[])
+{
+	std::cout << "Hello World.\n";
+	return 0;
+}
+{END}
+
+{END}
+
+################################################################################
+#                                                                              #
+#                            Build Instructions                                #
+#                                                                              #
+################################################################################
+
+{BUILD}
+	{INSTRUCTION}:aclocal
+	{INSTRUCTION}:autoheader
+	{INSTRUCTION}:automake -ac
+	{INSTRUCTION}:autoconf
+	{INSTRUCTION}:./configure
+	{INSTRUCTION}:make
+{END}

@@ -1,0 +1,79 @@
+################################################################################
+#                                                                              #
+#                                   Info                                       #
+#                                                                              #
+################################################################################
+
+{INFO}
+	{NAME}:Makefile Project
+	{LANGUAGE}:C++
+{END}
+
+################################################################################
+#                                                                              #
+#                               Setup Instructions                             #
+#                                                                              #
+################################################################################
+
+{CREATE}
+	{FILE}:README
+	{FILE}:Makefile
+	{FILE}:main.cc
+{END}
+
+################################################################################
+#                                                                              #
+#                                   Files                                      #
+#                                                                              #
+################################################################################
+
+{FILES}
+
+{FILE}:Makefile
+# Compiler Information
+CPP := g++ -c
+LINK := g++ -o
+
+# Project info
+APP_NAME := {%NAME%}
+OBJ := $(patsubst %.cc, %.o, $(wildcard *.cc))
+
+
+# Makefile stuff
+.PHONEY: all clean
+
+all:
+	$(MAKE) $(APP_NAME)
+
+clean:
+	rm -f $(APP_NAME) *.o
+
+$(APP_NAME): $(OBJ)
+	$(LINK) $(APP_NAME) $(OBJ)
+
+# Compile all the .cc files
+%.o: %.cc
+	$(CPP) $<
+{END}
+
+{FILE}:main.cc
+#include <iostream>
+
+int main(int argc, char *argv[])
+{
+	std::cout << "Hello World.\n";
+	return 0;
+}
+{END}
+
+{END}
+
+################################################################################
+#                                                                              #
+#                            Build Instructions                                #
+#                                                                              #
+################################################################################
+
+{BUILD}
+	{INSTRUCTION}:make
+{END}

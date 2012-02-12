@@ -1,0 +1,80 @@
+################################################################################
+#                                                                              #
+#                                   Info                                       #
+#                                                                              #
+################################################################################
+
+{INFO}
+	{NAME}:Makefile Project
+	{LANGUAGE}:C
+{END}
+
+################################################################################
+#                                                                              #
+#                               Setup Instructions                             #
+#                                                                              #
+################################################################################
+
+{CREATE}
+	{FILE}:README
+	{FILE}:Makefile
+	{FILE}:main.c
+{END}
+
+################################################################################
+#                                                                              #
+#                                   Files                                      #
+#                                                                              #
+################################################################################
+
+{FILES}
+
+{FILE}:Makefile
+# Compiler Information
+CC := gcc -c
+LINK := gcc -o
+
+# Project info
+APP_NAME := {%NAME%}
+OBJ := $(patsubst %.c, %.o, $(wildcard *.c))
+
+
+# Makefile stuff
+.PHONEY: all clean
+
+all:
+	$(MAKE) $(APP_NAME)
+
+clean:
+	rm -f $(APP_NAME) *.o
+
+$(APP_NAME): $(OBJ)
+	$(LINK) $(APP_NAME) $(OBJ)
+
+# Compile all the .c files
+%.o: %.c
+	$(CC) $<
+{END}
+
+{FILE}:main.cc
+#include "stdio.h"
+
+int main(int argc, char *argv[])
+{
+	printf("Hello World\n");
+
+	return 0;
+}
+{END}
+
+{END}
+
+################################################################################
+#                                                                              #
+#                            Build Instructions                                #
+#                                                                              #
+################################################################################
+
+{BUILD}
+	{INSTRUCTION}:make
+{END}

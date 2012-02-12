@@ -1,0 +1,45 @@
+gIDE
+
+[Description]
+
+gIDE aims to be an unobtrusive IDE which allows the user to do what they want:
+code without the IDE getting in their way.  To achive this gIDE is not tied to 
+any particular language or build tools, but does allow the user to configure the 
+build system on a per-project basis.
+
+gIDE was designed to integrate nicely with the GNOME desktop enviroment and uses
+many GTK and GNOME related technologies.
+
+[Dependancies]
+
+gtkmm 2.4 (2.12.5)
+libgtksourceviewmm 2.0 (1.9.2)
+giomm 2.4 (2.16.0)
+libxml++ 2.6 (2.20.0)
+liglademm 2.4 (2.6.6)
+vtemm (0.17.2)
+gconfmm 2.6 (2.22.0)
+
+[Proposed Features]
+
+The following feature list are features that need to be added before gIDE can 
+be decleared finished (or at least reach version 1).
+
+ * Import from directory.
+ * Glade integration.
+ * Plugin system.
+
+[Installing]
+
+See INSTALL for more information.
+
+[Contact]
+
+Website:
+	http://mlowen.com/
+	
+Bug Tracker:
+	http://mlowen.com/mantis
+
+Mailing List:
+	None set up yet.
